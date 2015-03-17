@@ -31,4 +31,23 @@ todo.controller = function(){
   todo.vm.init();
 }
 
+todo.view = function(){
+  return m("html", [
+    m("body", [
+      m("input"),
+      m("button", "ADD"),
+      m("table", [
+        m("tr", [
+          m("td", [
+            m("input[type=checkbox]")
+            ]),
+          m("td", "task description")
+        ])
+      ])
+    ])
+  ]);
+};
+
+m.render(document, todo.view())
+
 </script>
