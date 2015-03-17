@@ -24,8 +24,11 @@ todo.vm = (function() {
       }
     }
   }
-
-
+  return vm;
 }());
+
+todo.controller = function(){
+  todo.vm.init();
+}
 
 </script>
