@@ -1,0 +1,70 @@
+<!doctype html>
+<title>Todo app</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/0.1.30/mithril.js"></script>
+<script>
+
+var bbox = {};
+
+bbox.Link = function(data){
+  this.title = m.prop(data.title);
+  this.url = m.prop(data.url);
+}
+
+bbox.LinkList = Array;
+
+bbox.vm = (function() {
+  var vm = {};
+  vm.init = function(){
+    vm.list = new bbox.LinkList();
+    vm.title = m.prop('');
+    vm.url = m.prop('');
+    vm.add = function(){
+      if (vm.title() && vm.url()){
+        vm.list.push(new bbox.Link({title: vm.title(), url: vm.url}));
+        vm.title = m.prop('');
+        vm.url = m.prop('');
+      }
+    }
+  }
+  return vm;
+}());
+
+bbox.controller = function(){
+  bbox.vm.init();
+}
+
+bbox.view = function(){
+  return m("html", [
+    m("body", [
+      m("input", {
+        onchange: m.withAttr("value", bbox.vm.title),
+        value: bbox.vm.title()
+      }),
+      m("input", {
+        onchange: m.withAttr("value", bbox.vm.url),
+        value: bbox.vm.url()
+      }),
+      m("button", {onclick: bbox.vm.add}, "Add"),
+      m("ul"), [
+        bbox.vm.list.map(function(link, index) {
+          return m("li",)
+        })
+      ]
+      ])
+    ])
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
