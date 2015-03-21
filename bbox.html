@@ -20,9 +20,9 @@ bbox.vm = (function() {
     vm.url = m.prop('');
     vm.add = function(){
       if (vm.title() && vm.url()){
-        vm.list.push(new bbox.Link({title: vm.title(), url: vm.url}));
-        vm.title = m.prop('');
-        vm.url = m.prop('');
+        vm.list.push(new bbox.Link({title: vm.title(), url: vm.url()}));
+        vm.title('');
+        vm.url('');
       }
     }
   }
@@ -45,26 +45,17 @@ bbox.view = function(){
         value: bbox.vm.url()
       }),
       m("button", {onclick: bbox.vm.add}, "Add"),
-      m("ul"), [
+      m("ul", [
         bbox.vm.list.map(function(link, index) {
-          return m("li",)
+        return m("li", [
+          m("a", { href: link.url() }, link.title())
+          ])
         })
-      ]
       ])
     ])
-}
+  ]);
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
+m.module(document, {controller: bbox.controller, view: bbox.view});
 
 </script>
